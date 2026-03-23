@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>Form with GET</h1>
+<form action="/sum">
+    <label for="number1">Number1:</label><br>
+    <input type="number" id="number1" value="0" step="1"><br><br>
+    <label for="number2">Number2:</label><br>
+    <input type="number" id="number2" value="0" step="1"><br><br>
+    <input type="button" value="Submit" onclick="loadGetMsg()">
+</form>
+<div id="getrespmsg"></div>
+<script>
+    function loadGetMsg() {
+    let number1 = document.getElementById("number1").value;
+    let number2 = document.getElementById("number2").value;
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        document.getElementById("getrespmsg").innerHTML =
+        this.responseText;
+    }
+    xhttp.open("GET", "/sum?number1="+number1+"&number2="+number2);
+    xhttp.send();
+    }
+</script>
+</body>
+</html>
